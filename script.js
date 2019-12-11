@@ -10,9 +10,10 @@ $("button").click(function() {
     url: queryURL,
     method: "GET"
   }).then((response) => {
+    const result = response;
     for (element in results) {
       // bind response to object body
-      const results = response.docs[element];
+      const articleResults = result.docs[element];
 
       // initialize layout for dynamically generated elements
       const resultsDiv = $("<div>");
@@ -20,8 +21,8 @@ $("button").click(function() {
       const p = $("<p>");
 
       // write content to elements
-      h1.innerHTML = `<a href="${results.multimedia.url}">${results.headline.main}</a>`;
-      p.text = `${results.pub_date} \n ${results.snippet}`;
+      h1.innerHTML = `<a href="${articleResults.multimedia.url}">${articleResults.headline.main}</a>`;
+      p.text = `${articleResults.pub_date} \n ${articleResults.snippet}`;
 
       // write content to page
       resultsDiv.append(h1);
