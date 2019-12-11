@@ -1,11 +1,12 @@
-$("button").on("click", function() {
+$("button").click(function() {
   // setup API query based off of params passed by user
   const query = $(this).val();
+  const fromDate = $("#from-date").value;
+  const toDate = $("#to-date").value;
   const queryURL =
-    "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" +
-    query +
-    "&api-key=CBxn9s26XG0ivGlGxRAWeoP4FZfWAzAD";
+    `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&facet=true&begin_date=${fromDate}&end_date=${toDate}&api-key=CBxn9s26XG0ivGlGxRAWeoP4FZfWAzAD`;
 
+  // ajax call to hit API and pull data to display
   $.ajax({
     url: queryURL,
     method: "GET"
